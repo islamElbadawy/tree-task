@@ -1,0 +1,20 @@
+
+
+<ul>
+  <ng-container
+    *ngTemplateOutlet="Node; context:{ list: tree}"
+  ></ng-container>
+</ul>
+
+
+
+
+<ng-template #Node let-list="list">
+  <li *ngFor="let node of list">
+    <a href="#"><img [src]="node.imagePath" /><span>{{ node.code}}</span></a>
+    <ul *ngIf="node.children.length > 0">
+      <ng-container *ngTemplateOutlet="Node; context:{ list: node.children }">
+      </ng-container>
+    </ul>
+  </li>
+</ng-template>
